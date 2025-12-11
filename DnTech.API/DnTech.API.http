@@ -1,0 +1,6 @@
+@DnTech.API_HostAddress = http://localhost:5185
+
+GET {{DnTech.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

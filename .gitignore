@@ -1,0 +1,123 @@
+###########################
+## Build Artifacts       ##
+###########################
+
+# Binaries and object files
+[Dd]ebug/
+[Rr]elease/
+[Bb]in/
+[Oo]bj/
+[Tt]emp/
+*.pdb
+*.suo
+*.user
+*.bak
+*.ncb
+*.sbr
+*.res
+*.exe
+*.dll
+*.obj
+*.o
+*.lib
+*.so
+*.a
+*.ilk
+*.idb
+*.opt
+*.stackdump
+
+# Coverage output
+*.coverage
+*.opencover
+*.vscoveragexml
+
+# Profiler results
+*.vsp
+*.vsa
+
+###########################
+## Visual Studio         ##
+###########################
+
+# User specific files
+*.userprefs
+*.v12.suo
+*.v14.suo
+*.v15.suo
+*.vs*
+
+# IntelliSense/Caching
+*.aps
+*.bsc
+*.log
+*.vspscc
+*.vssscc
+*.tsc
+*_i.c
+*_p.c
+*.ipo
+
+# Resharper/Rider
+*.resharper
+*.user
+.idea/
+
+# Visual Studio Code
+.vscode/
+
+###########################
+## Package Management    ##
+###########################
+
+# NuGet packages
+[Pp]ackages/
+# The 'packages' folder can be in the repository root or solution directory.
+# If you are using PackageReference in your .csproj, this folder may not exist.
+
+# NuGet cache files
+*.nupkg
+*.snupkg
+*.cache
+
+# Project assets file
+project.assets.json
+
+# Tooling
+dotnet-tools.json
+.config/dotnet-tools.json
+
+###########################
+## Dependencies          ##
+###########################
+
+# Node.js/npm (for front-end or tooling)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# BOWER components (legacy)
+bower_components/
+
+###########################
+## Test & Configuration  ##
+###########################
+
+# Test results
+TestResults/
+*.trx
+
+# Local Settings
+appsettings.Development.json
+appsettings.Staging.json
+appsettings.Production.json
+# Generally, specific environment config files should be ignored if they contain secrets.
+
+###########################
+## Generated Files       ##
+###########################
+
+# Documentation
+_ReSharper.*/
+*.$*$
+Thumbs.db
