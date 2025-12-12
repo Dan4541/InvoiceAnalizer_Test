@@ -35,6 +35,13 @@
             builder.Property(u => u.LastLoginAt)
                 .IsRequired(false);
 
+            builder.Property(u => u.RefreshToken)
+               .HasMaxLength(500)
+               .IsRequired(false);
+
+            builder.Property(u => u.RefreshTokenExpiryTime)
+                .IsRequired(false);
+
             // Configurar Roles como JSON o tabla separada
             builder.Property(u => u.Roles)
                 .HasConversion(

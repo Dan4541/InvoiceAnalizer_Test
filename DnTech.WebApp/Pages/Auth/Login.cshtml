@@ -1,0 +1,142 @@
+﻿@page
+@model DnTech.WebApp.Pages.Auth.LoginModel
+@{
+    ViewData["Title"] = "Iniciar Sesión";
+    ViewData["BodyClass"] = "auth-page";
+}
+
+<div class="auth-container">
+    <div class="auth-card">
+        <!-- Header -->
+        <div class="auth-header">
+            <div class="auth-logo">
+                <i class="bi bi-shield-lock"></i>
+            </div>
+            <h1 class="auth-title">Bienvenido de nuevo</h1>
+            <p class="auth-subtitle">Ingresa tus credenciales para continuar</p>
+        </div>
+
+        <!-- Mensajes de error -->
+        @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+        {
+            <div class="alert alert-danger d-flex align-items-center" role="alert">
+                <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                <div>@Model.ErrorMessage</div>
+            </div>
+        }
+
+        <!-- Mensaje de éxito (después de registro) -->
+        @if (!string.IsNullOrEmpty(Model.SuccessMessage))
+        {
+            <div class="alert alert-success d-flex align-items-center" role="alert">
+                <i class="bi bi-check-circle-fill me-2"></i>
+                <div>@Model.SuccessMessage</div>
+            </div>
+        }
+
+        <!-- Formulario -->
+        <form method="post" class="auth-form" id="loginForm">
+            <!-- Email -->
+            <div class="mb-3">
+                <label for="email" class="form-label">
+                    <i class="bi bi-envelope me-1"></i>
+                    Correo electrónico
+                </label>
+                <input type="email"
+                       class="form-control"
+                       id="email"
+                       name="Input.Email"
+                       placeholder="tu@email.com"
+                       required
+                       autocomplete="email"
+                       autofocus>
+                <div class="invalid-feedback">
+                    Por favor ingresa un correo válido
+                </div>
+            </div>
+
+            <!-- Password -->
+            <div class="mb-3">
+                <label for="password" class="form-label">
+                    <i class="bi bi-lock me-1"></i>
+                    Contraseña
+                </label>
+                <div class="password-toggle position-relative">
+                    <input type="password"
+                           class="form-control"
+                           id="password"
+                           name="Input.Password"
+                           placeholder="••••••••"
+                           required
+                           autocomplete="current-password">
+                    <i class="bi bi-eye password-toggle-icon" id="togglePassword"></i>
+                </div>
+                <div class="invalid-feedback">
+                    Por favor ingresa tu contraseña
+                </div>
+            </div>
+
+            <!-- Remember me & Forgot password -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div class="form-check">
+                    <input class="form-check-input"
+                           type="checkbox"
+                           id="rememberMe"
+                           name="Input.RememberMe">
+                    <label class="form-check-label" for="rememberMe">
+                        Recordarme
+                    </label>
+                </div>
+                <a href="#" class="auth-link">
+                    ¿Olvidaste tu contraseña?
+                </a>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary-custom" id="loginBtn">
+                <span class="btn-text">Iniciar Sesión</span>
+                <span class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+            </button>
+        </form>
+
+        <!-- Footer -->
+        <div class="auth-footer">
+            ¿No tienes una cuenta?
+            <a href="/Auth/Register" class="auth-link">Regístrate aquí</a>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        // Toggle password visibility
+        const togglePassword = document.getElementById('togglePassword');
+        const password = document.getElementById('password');
+
+        togglePassword.addEventListener('click', function () {
+            const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+            password.setAttribute('type', type);
+            this.classList.toggle('bi-eye');
+            this.classList.toggle('bi-eye-slash');
+        });
+
+        // Form validation
+        const form = document.getElementById('loginForm');
+        const loginBtn = document.getElementById('loginBtn');
+
+        form.addEventListener('submit', function(event) {
+            if (!form.checkValidity()) {
+                event.preventDefault();
+                event.stopPropagation();
+                form.classList.add('shake');
+                setTimeout(() => form.classList.remove('shake'), 500);
+            } else {
+                // Show loading state
+                loginBtn.disabled = true;
+                loginBtn.querySelector('.btn-text').textContent = 'Iniciando sesión...';
+                loginBtn.querySelector('.spinner-border').classList.remove('d-none');
+            }
+            form.classList.add('was-validated');
+        });
+    </script>
+}

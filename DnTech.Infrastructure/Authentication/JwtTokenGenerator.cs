@@ -1,12 +1,4 @@
-﻿using DnTech.Domain.Entities;
-using DnTech.Domain.Services;
-using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-
-namespace DnTech.Infrastructure.Authentication
+﻿namespace DnTech.Infrastructure.Authentication
 {
     public class JwtTokenGenerator : IJwtTokenGenerator
     {
@@ -15,6 +7,14 @@ namespace DnTech.Infrastructure.Authentication
         public JwtTokenGenerator(IOptions<JwtSettings> jwtSettings)
         {
             _jwtSettings = jwtSettings.Value;
+        }
+
+        public string GenerateRefreshToken()
+        {
+            var randomNumber = new byte[64];
+            using var rng = RandomNumberGenerator.Create();
+            rng.GetBytes(randomNumber);
+            return Convert.ToBase64String(randomNumber);
         }
 
         public string GenerateToken(User user)

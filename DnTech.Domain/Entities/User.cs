@@ -11,6 +11,8 @@
         public DateTime CreatedAt { get; private set; }
         public DateTime? LastLoginAt { get; private set; }
         public List<string> Roles { get; private set; }
+        public string? RefreshToken { get; private set; }
+        public DateTime? RefreshTokenExpiryTime { get; private set; }
 
         // Constructor privado para EF Core
         private User()
@@ -63,6 +65,25 @@
         public void RemoveRole(string role)
         {
             Roles.Remove(role);
+        }
+
+        public void SetRefreshToken(string refreshToken, DateTime expiryTime)
+        {
+            RefreshToken = refreshToken;
+            RefreshTokenExpiryTime = expiryTime;
+        }
+
+        public void ClearRefreshToken()
+        {
+            RefreshToken = null;
+            RefreshTokenExpiryTime = null;
+        }
+
+        public bool IsRefreshTokenValid(string refreshToken)
+        {
+            return RefreshToken == refreshToken &&
+                   RefreshTokenExpiryTime.HasValue &&
+                   RefreshTokenExpiryTime.Value > DateTime.UtcNow;
         }
     }
 }

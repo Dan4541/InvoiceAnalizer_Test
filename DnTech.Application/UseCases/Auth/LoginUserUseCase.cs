@@ -1,4 +1,6 @@
-﻿namespace DnTech.Application.UseCases.Auth
+﻿using DnTech.Domain.Repositories;
+
+namespace DnTech.Application.UseCases.Auth
 {
     public class LoginUserUseCase
     {
@@ -44,10 +46,14 @@
 
                 // Actualizar último login
                 user.UpdateLastLogin();
-                await _userRepository.UpdateAsync(user, cancellationToken);
 
-                // Generar token
+                // Generar tokens
                 var token = _jwtTokenGenerator.GenerateToken(user);
+                var refreshToken = _jwtTokenGenerator.GenerateRefreshToken();
+
+                // Guardar refresh token
+                user.SetRefreshToken(refreshToken, DateTime.UtcNow.AddDays(7));
+                await _userRepository.UpdateAsync(user, cancellationToken);
 
                 var response = new AuthResponse(
                     user.Id,
@@ -55,6 +61,7 @@
                     user.FirstName,
                     user.LastName,
                     token,
+                    refreshToken,
                     DateTime.UtcNow.AddHours(24),
                     user.Roles
                 );

@@ -6,6 +6,7 @@
         string FirstName,
         string LastName,
         string Token,
+        string RefreshToken,
         DateTime ExpiresAt,
         List<string> Roles
     );

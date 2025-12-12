@@ -1,10 +1,107 @@
 ﻿@page
-@model IndexModel
+@model DnTech.WebApp.Pages.IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Dashboard";
+    ViewData["BodyClass"] = "dashboard-page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<!-- Dashboard Header -->
+<div class="dashboard-header">
+    <div class="container">
+        <h1 class="mb-2">¡Bienvenido, @Model.UserName!</h1>
+        <p class="text-muted mb-0">
+            <i class="bi bi-envelope me-2"></i>@Model.UserEmail
+        </p>
+    </div>
+</div>
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <!-- Stat Card 1 -->
+        <div class="col-md-4">
+            <div class="stat-card">
+                <div class="icon" style="background: linear-gradient(135deg, #667eea, #764ba2); color: white;">
+                    <i class="bi bi-person-check"></i>
+                </div>
+                <div class="value">Activo</div>
+                <div class="label">Estado de cuenta</div>
+            </div>
+        </div>
+
+        <!-- Stat Card 2 -->
+        <div class="col-md-4">
+            <div class="stat-card">
+                <div class="icon" style="background: linear-gradient(135deg, #f093fb, #f5576c); color: white;">
+                    <i class="bi bi-calendar-check"></i>
+                </div>
+                <div class="value">Hoy</div>
+                <div class="label">Último acceso</div>
+            </div>
+        </div>
+
+        <!-- Stat Card 3 -->
+        <div class="col-md-4">
+            <div class="stat-card">
+                <div class="icon" style="background: linear-gradient(135deg, #4facfe, #00f2fe); color: white;">
+                    <i class="bi bi-shield-check"></i>
+                </div>
+                <div class="value">Seguro</div>
+                <div class="label">Nivel de seguridad</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Welcome Card -->
+    <div class="row mt-4">
+        <div class="col-12">
+            <div class="stat-card">
+                <h3 class="mb-3">
+                    <i class="bi bi-rocket-takeoff me-2"></i>
+                    ¡Tu cuenta está lista!
+                </h3>
+                <p class="text-muted mb-4">
+                    Has iniciado sesión exitosamente en DnTech. Esta es tu área personal donde podrás gestionar tu cuenta y acceder a todas las funcionalidades.
+                </p>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <div class="d-flex align-items-start">
+                            <i class="bi bi-check-circle-fill text-success me-3 fs-4"></i>
+                            <div>
+                                <strong>Autenticación segura</strong>
+                                <p class="text-muted mb-0 small">Tu cuenta está protegida con JWT y encriptación</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="d-flex align-items-start">
+                            <i class="bi bi-check-circle-fill text-success me-3 fs-4"></i>
+                            <div>
+                                <strong>Clean Architecture</strong>
+                                <p class="text-muted mb-0 small">Sistema construido con las mejores prácticas</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="d-flex align-items-start">
+                            <i class="bi bi-check-circle-fill text-success me-3 fs-4"></i>
+                            <div>
+                                <strong>Responsive Design</strong>
+                                <p class="text-muted mb-0 small">Accede desde cualquier dispositivo</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <div class="d-flex align-items-start">
+                            <i class="bi bi-check-circle-fill text-success me-3 fs-4"></i>
+                            <div>
+                                <strong>Refresh Token</strong>
+                                <p class="text-muted mb-0 small">Sesiones seguras y persistentes</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

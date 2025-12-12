@@ -1,4 +1,6 @@
-﻿namespace DnTech.Application.UseCases.Auth
+﻿using DnTech.Domain.Repositories;
+
+namespace DnTech.Application.UseCases.Auth
 {
     public class RegisterUserUseCase
     {
@@ -42,8 +44,13 @@
                 // Guardar en BD
                 await _userRepository.AddAsync(user, cancellationToken);
 
-                // Generar token JWT
+                // Generar tokens JWT y Refresh
                 var token = _jwtTokenGenerator.GenerateToken(user);
+                var refreshToken = _jwtTokenGenerator.GenerateRefreshToken();
+
+                // Guardar refresh token en el usuario
+                user.SetRefreshToken(refreshToken, DateTime.UtcNow.AddDays(7));
+                await _userRepository.UpdateAsync(user, cancellationToken);
 
                 var response = new AuthResponse(
                     user.Id,
@@ -51,6 +58,7 @@
                     user.FirstName,
                     user.LastName,
                     token,
+                    refreshToken,
                     DateTime.UtcNow.AddHours(24), // Token expira en 24 horas
                     user.Roles
                 );

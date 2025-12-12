@@ -1,4 +1,6 @@
-﻿namespace DnTech.Infrastructure
+﻿using DnTech.Domain.Repositories;
+
+namespace DnTech.Infrastructure
 {
     public static class DependencyInjection
     {

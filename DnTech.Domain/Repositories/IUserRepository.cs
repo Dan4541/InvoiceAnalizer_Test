@@ -1,4 +1,4 @@
-﻿namespace DnTech.Domain.Entities
+﻿namespace DnTech.Domain.Repositories
 {
     public interface IUserRepository
     {

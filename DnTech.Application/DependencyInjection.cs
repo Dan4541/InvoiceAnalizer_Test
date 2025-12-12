@@ -10,6 +10,7 @@
             // Registrar casos de uso
             services.AddScoped<RegisterUserUseCase>();
             services.AddScoped<LoginUserUseCase>();
+            services.AddScoped<RefreshTokenUseCase>();
 
             return services;
         }

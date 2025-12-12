@@ -1,4 +1,6 @@
-﻿namespace DnTech.Infrastructure.Persistence.Repositories
+﻿using DnTech.Domain.Repositories;
+
+namespace DnTech.Infrastructure.Persistence.Repositories
 {
     public class UserRepository : IUserRepository
     {
