@@ -1,0 +1,9 @@
+﻿global using DnTech.Application.Common;
+global using DnTech.Application.DTOs.Auth;
+global using DnTech.Domain.Entities;
+global using DnTech.Domain.Services;
+global using DnTech.Domain.Exceptions;
+global using FluentValidation;
+global using DnTech.Application.UseCases.Auth;
+global using Microsoft.Extensions.DependencyInjection;
+global using System.Reflection;

@@ -1,8 +1,4 @@
-﻿using DnTech.Domain.Entities;
-using DnTech.Infrastructure.Persistence.Configurations;
-using Microsoft.EntityFrameworkCore;
-
-namespace DnTech.Infrastructure.Persistence
+﻿namespace DnTech.Infrastructure.Persistence
 {
     public class AuthDbContext : DbContext
     {

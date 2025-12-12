@@ -1,13 +1,4 @@
-﻿using DnTech.Domain.Entities;
-using DnTech.Domain.Services;
-using DnTech.Infrastructure.Authentication;
-using DnTech.Infrastructure.Persistence;
-using DnTech.Infrastructure.Persistence.Repositories;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-
-namespace DnTech.Infrastructure
+﻿namespace DnTech.Infrastructure
 {
     public static class DependencyInjection
     {

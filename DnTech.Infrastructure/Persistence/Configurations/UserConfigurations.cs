@@ -1,8 +1,4 @@
-﻿using DnTech.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
-namespace DnTech.Infrastructure.Persistence.Configurations
+﻿namespace DnTech.Infrastructure.Persistence.Configurations
 {
     public class UserConfigurations : IEntityTypeConfiguration<User>
     {

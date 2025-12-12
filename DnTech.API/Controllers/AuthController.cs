@@ -1,9 +1,4 @@
-﻿using DnTech.Application.DTOs.Auth;
-using DnTech.Application.UseCases.Auth;
-using FluentValidation;
-using Microsoft.AspNetCore.Mvc;
-
-namespace DnTech.API.Controllers
+﻿namespace DnTech.API.Controllers
 {
     public class AuthController : ControllerBase
     {

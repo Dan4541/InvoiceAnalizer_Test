@@ -1,7 +1,4 @@
-﻿using DnTech.Application.DTOs.Auth;
-using FluentValidation;
-
-namespace DnTech.Application.Validators
+﻿namespace DnTech.Application.Validators
 {
     public class LoginRequestValidator : AbstractValidator<LoginRequest>
     {

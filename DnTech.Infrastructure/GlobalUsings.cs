@@ -1,0 +1,10 @@
+﻿global using DnTech.Domain.Services;
+global using DnTech.Domain.Entities;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore.Metadata.Builders;
+global using DnTech.Infrastructure.Persistence.Configurations;
+global using DnTech.Infrastructure.Authentication;
+global using DnTech.Infrastructure.Persistence;
+global using DnTech.Infrastructure.Persistence.Repositories;
+global using Microsoft.Extensions.Configuration;
+global using Microsoft.Extensions.DependencyInjection;

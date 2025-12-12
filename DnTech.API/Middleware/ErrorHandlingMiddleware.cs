@@ -1,8 +1,4 @@
-﻿using DnTech.Domain.Exceptions;
-using System.Net;
-using System.Text.Json;
-
-namespace DnTech.API.Middleware
+﻿namespace DnTech.API.Middleware
 {
     public class ErrorHandlingMiddleware
     {

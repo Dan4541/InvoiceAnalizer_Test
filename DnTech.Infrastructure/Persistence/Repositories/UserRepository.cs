@@ -1,7 +1,4 @@
-﻿using DnTech.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
-
-namespace DnTech.Infrastructure.Persistence.Repositories
+﻿namespace DnTech.Infrastructure.Persistence.Repositories
 {
     public class UserRepository : IUserRepository
     {

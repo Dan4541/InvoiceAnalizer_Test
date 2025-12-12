@@ -1,9 +1,4 @@
-﻿using FluentValidation;
-using DnTech.Application.UseCases.Auth;
-using Microsoft.Extensions.DependencyInjection;
-using System.Reflection;
-
-namespace DnTech.Application
+﻿namespace DnTech.Application
 {
     public static class DependencyInjection
     {

@@ -1,6 +1,4 @@
-﻿using DnTech.Domain.Services;
-
-namespace DnTech.Infrastructure.Authentication
+﻿namespace DnTech.Infrastructure.Authentication
 {
     public class PasswordHasher : IPasswordHasher
     {

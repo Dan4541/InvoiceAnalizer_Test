@@ -1,5 +1,4 @@
-﻿using DnTech.Application.Common;
-using Microsoft.AspNetCore.Mvc;
+﻿
 
 namespace DnTech.API.Controllers
 {

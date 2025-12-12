@@ -1,9 +1,4 @@
-﻿using DnTech.Application.Common;
-using DnTech.Application.DTOs.Auth;
-using DnTech.Domain.Entities;
-using DnTech.Domain.Services;
-
-namespace DnTech.Application.UseCases.Auth
+﻿namespace DnTech.Application.UseCases.Auth
 {
     public class LoginUserUseCase
     {

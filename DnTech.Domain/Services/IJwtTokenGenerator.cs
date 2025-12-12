@@ -1,6 +1,4 @@
-﻿using DnTech.Domain.Entities;
-
-namespace DnTech.Domain.Services
+﻿namespace DnTech.Domain.Services
 {
     public interface IJwtTokenGenerator
     {
