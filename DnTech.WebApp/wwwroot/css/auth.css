@@ -116,31 +116,10 @@
         transition: color 0.3s ease;
     }
 
-    .footer-custom a:hover {
-        color: var(--primary-hover);
-        text-decoration: underline;
-    }
-
-/* ============================================
-   FIXED FOOTER STYLES
-   ============================================ */
-    html, body {
-        height: 100%;
-    }
-
-    body.dashboard-page {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-    }
-
-    body.dashboard-page main {
-        flex: 1 0 auto;
-    }
-
-    body.dashboard-page footer {
-        flex-shrink: 0;
-    }
+        .footer-custom a:hover {
+            color: var(--primary-hover);
+            text-decoration: underline;
+        }
 
 /* ============================================
    AUTH PAGES (LOGIN/REGISTER)
@@ -452,6 +431,27 @@ body.dashboard-page {
     }
 
 /* ============================================
+   FIXED FOOTER STYLES
+   ============================================ */
+html, body {
+        height: 100%;
+    }
+
+    body.dashboard-page {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    body.dashboard-page main {
+        flex: 1 0 auto;
+    }
+
+    body.dashboard-page footer {
+        flex-shrink: 0;
+    }
+
+/* ============================================
    RESPONSIVE
    ============================================ */
 @media (max-width: 576px) {
@@ -473,9 +473,548 @@ body.dashboard-page {
 }
 
 /* ============================================
+   FILE UPLOAD STYLES
+   ============================================ */
+.upload-zone {
+    border: 3px dashed var(--border-color);
+    border-radius: 12px;
+    padding: 3rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    background: #fafafa;
+}
+
+    .upload-zone:hover {
+        border-color: var(--primary-color);
+        background: #f0f0ff;
+    }
+
+    .upload-zone.drag-over {
+        border-color: var(--primary-color);
+        background: #e8e8ff;
+        transform: scale(1.02);
+    }
+
+    .upload-zone.has-file {
+        border-style: solid;
+        border-color: var(--success-color);
+        background: #f0fff4;
+        cursor: default;
+    }
+
+.upload-icon {
+    font-size: 4rem;
+    color: var(--primary-color);
+    opacity: 0.6;
+}
+
+.file-preview {
+    padding: 1.5rem;
+    background: white;
+    border-radius: 8px;
+}
+
+.file-icon {
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 24px;
+}
+
+.file-preview h6 {
+    margin: 0;
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+
+
+
+
+/* wwwroot/css/auth.css - Estilos globales para autenticación y dashboard */
+
+/* Variables de colores */
+/*:root {
+    --primary-color: #4f46e5;
+    --primary-hover: #4338ca;
+    --secondary-color: #6366f1;
+    --background-gradient-start: #667eea;
+    --background-gradient-end: #764ba2;
+    --text-dark: #1f2937;
+    --text-light: #6b7280;
+    --border-color: #e5e7eb;
+    --error-color: #dc2626;
+    --success-color: #16a34a;
+    --card-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}*/
+
+/* ============================================
+   NAVBAR STYLES
+   ============================================ */
+/*.navbar-custom {
+    background: linear-gradient(135deg, var(--background-gradient-start) 0%, var(--background-gradient-end) 100%);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    padding: 1rem 0;
+}
+
+    .navbar-custom .navbar-brand {
+        color: white !important;
+        font-weight: 700;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .navbar-custom .nav-link {
+        color: rgba(255, 255, 255, 0.9) !important;
+        font-weight: 500;
+        padding: 0.5rem 1rem !important;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+        .navbar-custom .nav-link:hover {
+            background: rgba(255, 255, 255, 0.15);
+            color: white !important;
+        }
+
+    .navbar-custom .btn-outline-light {
+        border: 2px solid white;
+        color: white;
+        font-weight: 600;
+        padding: 0.5rem 1.5rem;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+        .navbar-custom .btn-outline-light:hover {
+            background: white;
+            color: var(--primary-color);
+        }
+
+    .navbar-custom .btn-light {
+        background: white;
+        color: var(--primary-color);
+        font-weight: 600;
+        padding: 0.5rem 1.5rem;
+        border-radius: 8px;
+        border: none;
+        transition: all 0.3s ease;
+    }
+
+        .navbar-custom .btn-light:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 255, 255, 0.3);
+        }
+
+    .navbar-custom .btn-outline-light[type="submit"] {
+        background: transparent;
+    }
+
+        .navbar-custom .btn-outline-light[type="submit"]:hover {
+            background: white;
+            color: var(--primary-color);
+        }
+
+.user-badge {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    backdrop-filter: blur(10px);
+}*/
+
+/* ============================================
+   FOOTER STYLES
+   ============================================ */
+/*.footer-custom {
+    background: #f8f9fa;
+    padding: 2rem 0;
+    margin-top: 4rem;
+    border-top: 3px solid var(--primary-color);
+}
+
+    .footer-custom p {
+        margin: 0;
+        color: var(--text-light);
+        font-size: 0.9rem;
+    }
+
+    .footer-custom a {
+        color: var(--primary-color);
+        text-decoration: none;
+        font-weight: 600;
+        transition: color 0.3s ease;
+    }
+
+    .footer-custom a:hover {
+        color: var(--primary-hover);
+        text-decoration: underline;
+    }*/
+
+/* ============================================
+   FIXED FOOTER STYLES
+   ============================================ */
+    /*html, body {
+        height: 100%;
+    }
+
+    body.dashboard-page {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+    }
+
+    body.dashboard-page main {
+        flex: 1 0 auto;
+    }
+
+    body.dashboard-page footer {
+        flex-shrink: 0;
+    }*/
+
+/* ============================================
+   AUTH PAGES (LOGIN/REGISTER)
+   ============================================ */
+/*body.auth-page {
+    background: linear-gradient(135deg, var(--background-gradient-start) 0%, var(--background-gradient-end) 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+    body.auth-page main {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem 0;
+    }*/
+
+/* Contenedor principal */
+/*.auth-container {
+    width: 100%;
+    max-width: 450px;
+    margin: 0 auto;
+}*/
+
+/* Tarjeta de autenticación */
+/*.auth-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: var(--card-shadow);
+    padding: 40px;
+    animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}*/
+
+/* Header de la tarjeta */
+/*.auth-header {
+    text-align: center;
+    margin-bottom: 32px;
+}
+
+.auth-logo {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 16px;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.auth-title {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+}
+
+.auth-subtitle {
+    color: var(--text-light);
+    font-size: 14px;
+}*/
+
+/* Formulario */
+/*.auth-form .form-label {
+    font-weight: 600;
+    color: var(--text-dark);
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.auth-form .form-control {
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 14px;
+    transition: all 0.3s ease;
+}
+
+    .auth-form .form-control:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.1);
+    }
+
+    .auth-form .form-control.is-invalid {
+        border-color: var(--error-color);
+    }
+
+        .auth-form .form-control.is-invalid:focus {
+            box-shadow: 0 0 0 4px rgba(220, 38, 38, 0.1);
+        }*/
+
+/* Mensajes de validación */
+/*.invalid-feedback {
+    color: var(--error-color);
+    font-size: 13px;
+    margin-top: 4px;
+}
+
+.alert {
+    border-radius: 8px;
+    padding: 12px 16px;
+    font-size: 14px;
+    margin-bottom: 20px;
+}*/
+
+/* Botones */
+/*.btn-primary-custom {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    border: none;
+    border-radius: 8px;
+    padding: 12px 24px;
+    font-weight: 600;
+    font-size: 16px;
+    color: white;
+    width: 100%;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+    .btn-primary-custom:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 16px rgba(79, 70, 229, 0.3);
+    }
+
+    .btn-primary-custom:active {
+        transform: translateY(0);
+    }
+
+    .btn-primary-custom:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }*/
+
+/* Enlaces */
+/*.auth-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+    .auth-link:hover {
+        color: var(--primary-hover);
+        text-decoration: underline;
+    }*/
+
+/* Footer de la tarjeta */
+/*.auth-footer {
+    margin-top: 24px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+    color: var(--text-light);
+    font-size: 14px;
+}*/
+
+/* Checkbox personalizado */
+/*.form-check-input:checked {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.form-check-label {
+    font-size: 14px;
+    color: var(--text-dark);
+}*/
+
+/* Password toggle */
+/*.password-toggle {
+    position: relative;
+}
+
+.password-toggle-icon {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: var(--text-light);
+    transition: color 0.3s ease;
+}
+
+    .password-toggle-icon:hover {
+        color: var(--text-dark);
+    }*/
+
+/* Loading spinner */
+/*.spinner-border-sm {
+    width: 16px;
+    height: 16px;
+    border-width: 2px;
+}*/
+
+/* Animación para mensajes de error */
+/*@keyframes shake {
+    0%, 100% {
+        transform: translateX(0);
+    }
+
+    10%, 30%, 50%, 70%, 90% {
+        transform: translateX(-5px);
+    }
+
+    20%, 40%, 60%, 80% {
+        transform: translateX(5px);
+    }
+}
+
+.shake {
+    animation: shake 0.5s;
+}*/
+
+/* Strength meter para password */
+/*.password-strength {
+    height: 4px;
+    border-radius: 2px;
+    margin-top: 8px;
+    background-color: var(--border-color);
+    overflow: hidden;
+}
+
+.password-strength-bar {
+    height: 100%;
+    transition: all 0.3s ease;
+    border-radius: 2px;
+}
+
+.password-strength-weak {
+    width: 33%;
+    background-color: var(--error-color);
+}
+
+.password-strength-medium {
+    width: 66%;
+    background-color: #f59e0b;
+}
+
+.password-strength-strong {
+    width: 100%;
+    background-color: var(--success-color);
+}*/
+
+/* ============================================
+   DASHBOARD STYLES
+   ============================================ */
+/*body.dashboard-page {
+    background-color: #f8f9fa;
+}
+
+.dashboard-header {
+    background: white;
+    padding: 40px 0;
+    margin-bottom: 30px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.stat-card {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+    .stat-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+    }
+
+    .stat-card .icon {
+        width: 48px;
+        height: 48px;
+        border-radius: 10px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 24px;
+        margin-bottom: 16px;
+    }
+
+    .stat-card .value {
+        font-size: 32px;
+        font-weight: 700;
+        color: #1f2937;
+        margin-bottom: 4px;
+    }
+
+    .stat-card .label {
+        color: #6b7280;
+        font-size: 14px;
+    }*/
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+/*@media (max-width: 576px) {
+    .auth-card {
+        padding: 24px;
+    }
+
+    .auth-title {
+        font-size: 24px;
+    }
+
+    body.auth-page main {
+        padding: 1rem;
+    }
+
+    .navbar-custom .navbar-brand {
+        font-size: 1.25rem;
+    }
+}*/
+
+/* ============================================
    MODAL STYLES
    ============================================ */
-#logoutModal .modal-content {
+/*#logoutModal .modal-content {
     border-radius: 16px;
     border: none;
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
@@ -515,20 +1054,20 @@ body.dashboard-page {
     #logoutModal .btn-primary:hover {
         transform: translateY(-2px);
         box-shadow: 0 8px 20px rgba(79, 70, 229, 0.3);
-    }
+    }*/
 
 /* Efecto de entrada del modal */
-.modal.fade .modal-dialog {
+/*.modal.fade .modal-dialog {
     transform: translateY(50px);
     transition: transform 0.3s ease-out;
 }
 
 .modal.show .modal-dialog {
     transform: translateY(0);
-}
+}*/
 
 /* Responsive para modal */
-@media (max-width: 576px) {
+/*@media (max-width: 576px) {
     #logoutModal .modal-dialog {
         margin: 1rem;
     }
@@ -541,4 +1080,4 @@ body.dashboard-page {
     #logoutModal .modal-footer {
         flex-direction: column;
     }
-}
+}*/

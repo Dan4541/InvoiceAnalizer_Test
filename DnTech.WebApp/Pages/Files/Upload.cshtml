@@ -1,0 +1,275 @@
+﻿@page
+@model UploadModel
+@{
+    ViewData["Title"] = "Subir Archivo";
+    ViewData["BodyClass"] = "dashboard-page";
+}
+
+<div class="container py-4">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <!-- Header -->
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <div>
+                    <h2 class="mb-1">
+                        <i class="bi bi-cloud-upload me-2"></i>
+                        Subir Documento
+                    </h2>
+                    <p class="text-muted mb-0">Carga documentos PDF, JPG o PNG para análisis</p>
+                </div>
+                <a href="/Files/List" class="btn btn-outline-primary">
+                    <i class="bi bi-list-ul me-1"></i>
+                    Ver Documentos
+                </a>
+            </div>
+
+            <!-- Mensajes -->
+            @if (!string.IsNullOrEmpty(Model.ErrorMessage))
+            {
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                    @Model.ErrorMessage
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            }
+
+            @if (!string.IsNullOrEmpty(Model.SuccessMessage))
+            {
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    <i class="bi bi-check-circle-fill me-2"></i>
+                    @Model.SuccessMessage
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            }
+
+            <!-- Card de Upload -->
+            <div class="stat-card">
+                <form method="post" enctype="multipart/form-data" id="uploadForm">
+
+                    <!-- Zona de Drop -->
+                    <div class="upload-zone" id="uploadZone">
+                        <input type="file"
+                               class="d-none"
+                               id="fileInput"
+                               name="File"
+                               accept=".pdf,.jpg,.jpeg,.png"
+                               required>
+
+                        <div class="upload-zone-content text-center" id="uploadZoneContent">
+                            <i class="bi bi-cloud-arrow-up upload-icon"></i>
+                            <h5 class="mt-3">Arrastra tu documento aquí</h5>
+                            <p class="text-muted mb-3">o haz click para seleccionar</p>
+                            <button type="button" class="btn btn-primary" onclick="document.getElementById('fileInput').click()">
+                                <i class="bi bi-folder2-open me-2"></i>
+                                Seleccionar Documento
+                            </button>
+                            <p class="text-muted small mt-3 mb-0">
+                                <i class="bi bi-info-circle me-1"></i>
+                                PDF, JPG o PNG (máximo 10MB)
+                            </p>
+                        </div>
+
+                        <!-- Preview del archivo seleccionado -->
+                        <div class="file-preview d-none" id="filePreview">
+                            <div class="d-flex align-items-center justify-content-between">
+                                <div class="d-flex align-items-center">
+                                    <div class="file-icon me-3" id="fileIcon">
+                                        <i class="bi bi-file-earmark"></i>
+                                    </div>
+                                    <div>
+                                        <h6 class="mb-1" id="fileName">documento.pdf</h6>
+                                        <small class="text-muted" id="fileSize">0 KB</small>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-outline-danger btn-sm" onclick="removeFile()">
+                                    <i class="bi bi-trash"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Parámetros adicionales -->
+                    <div class="row mt-4">
+                        <div class="col-md-6 mb-3">
+                            <label for="parameter1" class="form-label fw-semibold">
+                                <i class="bi bi-1-circle me-1"></i>
+                                Parámetro 1
+                            </label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="parameter1"
+                                   name="Parameter1"
+                                   placeholder="Ingresa el parámetro 1"
+                                   required>
+                            <small class="text-muted">Campo requerido para el procesamiento</small>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <label for="parameter2" class="form-label fw-semibold">
+                                <i class="bi bi-2-circle me-1"></i>
+                                Parámetro 2
+                            </label>
+                            <input type="text"
+                                   class="form-control"
+                                   id="parameter2"
+                                   name="Parameter2"
+                                   placeholder="Ingresa el parámetro 2"
+                                   required>
+                            <small class="text-muted">Campo requerido para el procesamiento</small>
+                        </div>
+                    </div>
+
+                    <!-- Botones -->
+                    <div class="d-flex gap-2 mt-4">
+                        <button type="submit" class="btn btn-primary flex-fill" id="uploadBtn">
+                            <i class="bi bi-upload me-2"></i>
+                            <span class="btn-text">Subir y Validar</span>
+                            <span class="spinner-border spinner-border-sm d-none ms-2" role="status"></span>
+                        </button>
+                        <button type="button" class="btn btn-outline-secondary" onclick="resetForm()">
+                            <i class="bi bi-arrow-clockwise"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Info adicional -->
+            <div class="stat-card mt-4">
+                <h5 class="mb-3">
+                    <i class="bi bi-info-circle me-2"></i>
+                    Información sobre los documentos
+                </h5>
+                <div class="row">
+                    <div class="col-md-6">
+                        <h6 class="text-primary">Formatos aceptados:</h6>
+                        <ul class="small text-muted">
+                            <li><strong>PDF:</strong> Documentos escaneados o digitales</li>
+                            <li><strong>JPG/PNG:</strong> Imágenes de documentos</li>
+                            <li>Tamaño máximo: 10MB</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <h6 class="text-primary">Análisis automático:</h6>
+                        <ul class="small text-muted">
+                            <li>Clasificación de documentos</li>
+                            <li>Extracción de datos (facturas, información)</li>
+                            <li>Análisis de sentimiento</li>
+                            <li>Procesamiento con IA</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        const uploadZone = document.getElementById('uploadZone');
+        const fileInput = document.getElementById('fileInput');
+        const uploadZoneContent = document.getElementById('uploadZoneContent');
+        const filePreview = document.getElementById('filePreview');
+        const uploadForm = document.getElementById('uploadForm');
+        const uploadBtn = document.getElementById('uploadBtn');
+
+        // Drag and drop
+        uploadZone.addEventListener('click', (e) => {
+            if (e.target === uploadZone || e.target.closest('.upload-zone-content')) {
+                fileInput.click();
+            }
+        });
+
+        uploadZone.addEventListener('dragover', (e) => {
+            e.preventDefault();
+            uploadZone.classList.add('drag-over');
+        });
+
+        uploadZone.addEventListener('dragleave', () => {
+            uploadZone.classList.remove('drag-over');
+        });
+
+        uploadZone.addEventListener('drop', (e) => {
+            e.preventDefault();
+            uploadZone.classList.remove('drag-over');
+
+            const files = e.dataTransfer.files;
+            if (files.length > 0) {
+                fileInput.files = files;
+                showFilePreview(files[0]);
+            }
+        });
+
+        // File input change
+        fileInput.addEventListener('change', (e) => {
+            if (e.target.files.length > 0) {
+                showFilePreview(e.target.files[0]);
+            }
+        });
+
+        function showFilePreview(file) {
+            // Validar tipo
+            const validExtensions = ['.pdf', '.jpg', '.jpeg', '.png'];
+            const fileName = file.name.toLowerCase();
+            const isValid = validExtensions.some(ext => fileName.endsWith(ext));
+
+            if (!isValid) {
+                alert('Por favor selecciona un archivo PDF, JPG o PNG');
+                return;
+            }
+
+            // Validar tamaño (10MB)
+            if (file.size > 10 * 1024 * 1024) {
+                alert('El archivo no debe superar los 10MB');
+                return;
+            }
+
+            // Actualizar icono según tipo de archivo
+            const fileIconElement = document.getElementById('fileIcon');
+            if (fileName.endsWith('.pdf')) {
+                fileIconElement.innerHTML = '<i class="bi bi-file-earmark-pdf"></i>';
+            } else if (fileName.endsWith('.jpg') || fileName.endsWith('.jpeg') || fileName.endsWith('.png')) {
+                fileIconElement.innerHTML = '<i class="bi bi-file-earmark-image"></i>';
+            }
+
+            document.getElementById('fileName').textContent = file.name;
+            document.getElementById('fileSize').textContent = formatFileSize(file.size);
+
+            uploadZoneContent.classList.add('d-none');
+            filePreview.classList.remove('d-none');
+            uploadZone.classList.add('has-file');
+        }
+
+        function removeFile() {
+            fileInput.value = '';
+            uploadZoneContent.classList.remove('d-none');
+            filePreview.classList.add('d-none');
+            uploadZone.classList.remove('has-file');
+        }
+
+        function resetForm() {
+            uploadForm.reset();
+            removeFile();
+        }
+
+        function formatFileSize(bytes) {
+            if (bytes === 0) return '0 Bytes';
+            const k = 1024;
+            const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+            const i = Math.floor(Math.log(bytes) / Math.log(k));
+            return Math.round(bytes / Math.pow(k, i) * 100) / 100 + ' ' + sizes[i];
+        }
+
+        // Form submit
+        uploadForm.addEventListener('submit', function(e) {
+            if (!fileInput.files.length) {
+                e.preventDefault();
+                alert('Por favor selecciona un archivo');
+                return;
+            }
+
+            // Show loading
+            uploadBtn.disabled = true;
+            uploadBtn.querySelector('.btn-text').textContent = 'Subiendo...';
+            uploadBtn.querySelector('.spinner-border').classList.remove('d-none');
+        });
+    </script>
+}

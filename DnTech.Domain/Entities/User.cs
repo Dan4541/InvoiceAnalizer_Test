@@ -1,4 +1,6 @@
-﻿namespace DnTech.Domain.Entities
+﻿using DnTech.Domain.Constants;
+
+namespace DnTech.Domain.Entities
 {
     public class User
     {
@@ -25,13 +27,21 @@
             string email,
             string passwordHash,
             string firstName,
-            string lastName)
+            string lastName,
+            bool isAdmin = false)
         {
             if (string.IsNullOrWhiteSpace(email))
                 throw new ArgumentException("Email no puede estar vacío", nameof(email));
 
             if (string.IsNullOrWhiteSpace(passwordHash))
                 throw new ArgumentException("Password hash no puede estar vacío", nameof(passwordHash));
+
+            var roles = new List<string> { UserRoles.User };
+
+            if (isAdmin)
+            {
+                roles.Add(UserRoles.Admin);
+            }
 
             return new User
             {
@@ -42,7 +52,7 @@
                 LastName = lastName,
                 IsActive = true,
                 CreatedAt = DateTime.UtcNow,
-                Roles = new List<string> { "User" } // Rol por defecto
+                Roles = roles
             };
         }
 
@@ -57,14 +67,31 @@
         }
 
         public void AddRole(string role)
-        {
-            if (!Roles.Contains(role))
-                Roles.Add(role);
+        {            
+            if (!UserRoles.IsValidRole(role))
+                throw new ArgumentException($"El rol '{role}' no es válido", nameof(role));
+
+            if (!this.Roles.Contains(role))
+                this.Roles.Add(role);
         }
 
         public void RemoveRole(string role)
         {
-            Roles.Remove(role);
+            // No permitir eliminar el rol User si es el único
+            if (role == UserRoles.User && this.Roles.Count == 1)
+                throw new InvalidOperationException("No se puede eliminar el rol User si es el único rol del usuario");
+
+            this.Roles.Remove(role);
+        }
+
+        public bool HasRole(string role)
+        {
+            return this.Roles.Contains(role);
+        }
+
+        public bool IsAdmin()
+        {
+            return this.Roles.Contains(UserRoles.Admin);
         }
 
         public void SetRefreshToken(string refreshToken, DateTime expiryTime)
